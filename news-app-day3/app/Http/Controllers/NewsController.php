@@ -25,8 +25,8 @@ class NewsController extends Controller
         $articles = News::query();
         
         // Filter by attribute
-        $visible = $request->input('visible');
-        if($visible) {
+        if($request->exists('visible')) {
+            $visible = $request->boolean('visible'); // it parses 0/1, true/false, on/off into boolean
             $articles = $articles->where('visible','=',$visible);
         }
 
